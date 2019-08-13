@@ -2,11 +2,11 @@ node{
 
    stage("App Build started"){
       echo 'App build started..'
-      git credentialsId: 'Github-ID', url: 'https://github.com/vickeyreddy/python-docker-app-openshifts.git'
+      git credentialsId: 'Github-ID', url: 'https://github.com/vickeyreddy/mr.v-project.git'
       }
    stage('Code Checkout') { // for display purposes
      echo 'Checout Code and clone it inside jenkins workspace.'
-     git 'https://github.com/itrainavengers/sonar-maven.git'
+     git 'https://github.com/vickeyreddy/mr.v-project.git'
     }
    stage('Build Test & Package') {
       echo 'Build the package'
@@ -33,14 +33,14 @@ node{
 
     }
    stage('Docker Build') {
-     def app = docker.build "vickeyreddy/python-docker-app"
+     def app = docker.build "https://github.com/vickeyreddy/mr.v-project.git"
     }
 
    stage("Tag & Push image"){
       withDockerRegistry([credentialsId: 'Github-ID', url: 'https://index.docker.io/v1/']) {
-          sh 'docker tag vickeyreddy/python-docker vickeyreddy/python-docker'
-          sh 'docker push vickeyreddy/python-docker:001'
-          sh 'docker push vickeyreddy/python-docker:latest'
+          sh 'docker tag vickeyreddy/mr.v-project vickeyreddy/mr.v-project'
+          sh 'docker push vickeyreddy/mr.v-project:001'
+          sh 'docker push vickeyreddy/mr.v-project:latest'
       }
     }
 
