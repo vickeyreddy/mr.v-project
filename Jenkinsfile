@@ -8,13 +8,14 @@ node{
      echo 'Checout Code and clone it inside jenkins workspace.'
      git 'https://github.com/vickeyreddy/mr.v-project.git'
     }
-   stage('SonarScan') {
-    
-         //from pylint import epylint as lint
-             ' -(pylint_stdout, pylint_stderr) = lint.py_run('module_name.py', return_std=True) ' +
-             ' -Dsonar.host.url=https://sonarcloud.io '+
-             ' -Dsonar.organization=vickeyreddy '+
-             ' -Dsonar.login=687e313ca00cffbce20bcf4dac718f29e44a3246 '
-     
-    }
+   stage('SonarQube analysis') {
+      // requires SonarQube Scanner 2.8+
+      def scannerHome = tool 'SonarQube Scanner 2.8';
+      withSonarQubeEnv('My SonarQube Server') {
+      sh "${scannerHome}/bin/sonar-scanner"
+          ' -Dsonar.host.url=https://sonarcloud.io '+
+          ' -Dsonar.organization=itrainavengers '+
+          ' -Dsonar.login=a836eb50d6a0b99306e6db9038c5d37e44d1cc8d '
+  }
+
 }
