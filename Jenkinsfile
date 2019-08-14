@@ -8,8 +8,29 @@ node{
      echo 'Checout Code and clone it inside jenkins workspace.'
      git 'https://github.com/vickeyreddy/mr.v-project.git'
     }
+    pipeline {
+        agent none
+        stages {
+          stage("build & SonarQube analysis") {
+            agent any
+            steps {
+              withSonarQubeEnv('My SonarQube Server') {
+                sh 'python clean package sonar:sonar'
+              }
+            }
+          }
+          stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+          }
+        }
+      }
+      
    stage('SonarQube analysis') {
-      // requires SonarQube Scanner 2.8+
+      requires SonarQube Scanner 2.8+
       def scannerHome = tool 'SonarQube Scanner 2.8';
       withSonarQubeEnv('My SonarQube Server') {
       sh "${scannerHome}/bin/sonar-scanner"
