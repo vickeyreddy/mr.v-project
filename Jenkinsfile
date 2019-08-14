@@ -11,7 +11,7 @@ node{
    stage('SonarScan') {
     
             
-             sh 'mvn org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar' +
+             sh ' org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar' +
              ' -Dsonar.host.url=https://sonarcloud.io '+
              ' -Dsonar.organization=vickeyreddy '+
              ' -Dsonar.login=687e313ca00cffbce20bcf4dac718f29e44a3246 '
