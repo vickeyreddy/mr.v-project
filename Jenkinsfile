@@ -10,8 +10,8 @@ node{
     }
    stage('SonarScan') {
     
-            
-             sh ' org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar' +
+         //from pylint import epylint as lint
+             ' -(pylint_stdout, pylint_stderr) = lint.py_run('module_name.py', return_std=True) ' +
              ' -Dsonar.host.url=https://sonarcloud.io '+
              ' -Dsonar.organization=vickeyreddy '+
              ' -Dsonar.login=687e313ca00cffbce20bcf4dac718f29e44a3246 '
