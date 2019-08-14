@@ -15,7 +15,7 @@ node{
             agent any
             steps {
               withSonarQubeEnv('My SonarQube Server') {
-                sh 'python clean package sonar:sonar'
+                sh 'pip clean package sonar:sonar'
               }
             }
           }
@@ -31,13 +31,13 @@ node{
       
    stage('SonarQube analysis') {
       requires SonarQube Scanner 2.8+
-      def scannerHome = tool 'SonarQube Scanner 2.8';
-      withSonarQubeEnv('My SonarQube Server') {
+         def scannerHome = tool 'SonarQube Scanner 2.8';
+          withSonarQubeEnv('My SonarQube Server') {
       sh "${scannerHome}/bin/sonar-scanner"
           ' -Dsonar.projectKey=vickeyreddy_mr.v project '+
           ' -Dsonar.host.url=https://sonarcloud.io '+
           ' -Dsonar.organization=vickeyreddy '+
           ' -Dsonar.login=a836eb50d6a0b99306e6db9038c5d37e44d1cc8d '
     }
-  }
+   }
 }
