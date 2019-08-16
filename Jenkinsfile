@@ -1,4 +1,4 @@
-@Library('SonarSource@2.2') _
+@Library('Sonar:Sonar ') _
 pipeline {
   agent {
     label 'linux'
