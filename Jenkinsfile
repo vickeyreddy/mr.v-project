@@ -1,4 +1,4 @@
-@Library('Sonar:Sonar ') _
+@Library('export SONAR_SCANNER_OPTS="-Xmx512m" ') _
 pipeline {
   agent {
     label 'linux'
