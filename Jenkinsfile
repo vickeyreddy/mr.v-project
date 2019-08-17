@@ -14,7 +14,7 @@ node{
              ' -Dsonar.host.url=https://sonarcloud.io '+
              ' -Dsonar.organization=itrainavengers '+
              ' -Dsonar.login=c1f3a8036d378aacc1f6e6e2fc6dcd7de2ebae5d '
-         //}
+         }
      
     }
 }
